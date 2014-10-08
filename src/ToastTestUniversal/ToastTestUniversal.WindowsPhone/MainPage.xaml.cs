@@ -47,19 +47,29 @@ namespace ToastTestUniversal
             // this event is handled for you.
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void Everlasting_OnClick(object sender, RoutedEventArgs e)
         {
-            ShowToast();
+            ShowToast(-1, "No timeout toast from Jay!");
         }
 
-        private void ShowToast()
+        private void WithTimeout_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowToast(10, "10s timeout toast from Jay!");
+        }
+
+        private void ZeroTimeout_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowToast(1, "Short timeout toast from Jay!");
+        }
+
+        private void ShowToast(int timeoutInSeconds, string text)
         {
             var toastTemplate = ToastTemplateType.ToastImageAndText01;
             
             var toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
             
             var toastTextElements = toastXml.GetElementsByTagName("text");
-            toastTextElements[0].AppendChild(toastXml.CreateTextNode("Toast from Jay!"));
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode(text));
 
             ////Andreas Hammar 2014-10-08 08:39: note! does not work on windows phone
             //var toastImageAttributes = toastXml.GetElementsByTagName("image");
@@ -68,7 +78,8 @@ namespace ToastTestUniversal
 
             var toast = new ToastNotification(toastXml);
 
-            toast.ExpirationTime = DateTime.Now.AddSeconds(10);
+            if (timeoutInSeconds >= 0)
+                toast.ExpirationTime = DateTime.Now.AddSeconds(timeoutInSeconds);
 
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }

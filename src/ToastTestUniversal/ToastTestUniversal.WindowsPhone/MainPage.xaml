@@ -9,9 +9,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel>
         <Button 
-            Content="display toast" 
+            Content="toast - everlasting" 
             Margin="12"
-            Click="ButtonBase_OnClick"/>
+            Click="Everlasting_OnClick"/>
+            <Button 
+            Content="toast - expires in 10 s" 
+            Margin="12"
+            Click="WithTimeout_OnClick"/>
+            <Button 
+            Content="toast - expires in 0 s" 
+            Margin="12"
+            Click="ZeroTimeout_OnClick"/>
+        </StackPanel>
     </Grid>
 </Page>
