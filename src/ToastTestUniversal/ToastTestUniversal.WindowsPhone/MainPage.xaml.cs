@@ -59,12 +59,12 @@ namespace ToastTestUniversal
             var toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
             
             var toastTextElements = toastXml.GetElementsByTagName("text");
-            toastTextElements[0].AppendChild(toastXml.CreateTextNode("toast message from Jay!"));
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode("Toast from Jay!"));
 
-            //Andreas Hammar 2014-10-08 08:39: note! does not work on windows phone
-            var toastImageAttributes = toastXml.GetElementsByTagName("image");
-            ((XmlElement)toastImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/jay_transparent.png");
-            ((XmlElement)toastImageAttributes[0]).SetAttribute("alt", "jay");
+            ////Andreas Hammar 2014-10-08 08:39: note! does not work on windows phone
+            //var toastImageAttributes = toastXml.GetElementsByTagName("image");
+            //((XmlElement)toastImageAttributes[0]).SetAttribute("src", "ms-appx:///Assets/jay_transparent.png");
+            //((XmlElement)toastImageAttributes[0]).SetAttribute("alt", "jay");
 
             var toast = new ToastNotification(toastXml);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
