@@ -67,6 +67,9 @@ namespace ToastTestUniversal
             //((XmlElement)toastImageAttributes[0]).SetAttribute("alt", "jay");
 
             var toast = new ToastNotification(toastXml);
+
+            toast.ExpirationTime = DateTime.Now.AddSeconds(10);
+
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
